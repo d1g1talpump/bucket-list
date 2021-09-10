@@ -18,6 +18,43 @@ use Symfony\Component\Routing\Annotation\Route;
 class WishController extends AbstractController
 {
     /**
+     * @Route("/", name="list")
+     */
+    public function list(WishRepository $wishRepository): Response
+    {
+        $allWishes = $wishRepository->findAll();
+
+        return $this->render('wish/list.html.twig', [
+            'allWishes'=>$allWishes,
+        ]);
+    }
+
+    /**
+     * @Route("/listCategory/{categoryId}", name="listCategory")
+     */
+    public function listByCategory(int $categoryId ,WishRepository $wishRepository): Response
+    {
+        $allWishesByCategory = $wishRepository->findByCategory($categoryId);
+
+        return $this->render('wish/listCategory.html.twig', [
+            "allWishesByCategory" => $allWishesByCategory
+        ]);
+    }
+
+    /**
+     * @Route("/details/{id}", name="details")
+     */
+    public function details(int $id, WishRepository $wishRepository): Response
+    {
+        $wish = $wishRepository->find($id);
+
+
+        return $this->render('wish/details.html.twig', [
+            "wish" => $wish
+        ]);
+    }
+
+    /**
      * @Route("/add", name="add")
      */
     public function addWish(Request $request, EntityManagerInterface $entityManager): Response
@@ -39,31 +76,6 @@ class WishController extends AbstractController
 
         return $this->render("wish/add.html.twig", [
             'wishForm' => $wishForm->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/", name="list")
-     */
-    public function list(WishRepository $wishRepository): Response
-    {
-        $allWishes = $wishRepository->findAll();
-
-        return $this->render('wish/list.html.twig', [
-            'allWishes'=>$allWishes,
-        ]);
-    }
-
-    /**
-     * @Route("/details/{id}", name="details")
-     */
-    public function details(int $id, WishRepository $wishRepository): Response
-    {
-        $wish = $wishRepository->find($id);
-
-
-        return $this->render('wish/details.html.twig', [
-            "wish" => $wish
         ]);
     }
 }

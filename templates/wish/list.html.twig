@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ parent() }} | Your List
+    {{ parent() }} | The List
 {% endblock %}
 
 {% block body %}
-    <h1>Your {{ parent() }}</h1>
+    <h1>The {{ parent() }}</h1>
 
     <div class="wish-list">
         <ol>
             {% for wish in allWishes %}
                 <li><a href="{{ path('wish_details', {'id': wish.id }) }}">{{ wish.title }}</a>
-                <dd>Category : <a href="{{ path('category_list', {'categoryId' : wish.category.id}) }}">{{ wish.category.name }}</a></dd>
+                <dd>Category : <a href="{{ path('wish_listCategory', {'categoryId' : wish.category.id}) }}">{{ wish.category.name }}</a></dd>
                 </li>
             {% endfor %}
         </ol>

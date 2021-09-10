@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category/list/{categoryId}", name="category_list")
+     * @Route("/category/", name="category_list")
      */
-    public function listByCategory(int $categoryId ,WishRepository $wishRepository): Response
+    public function list(CategoryRepository $categoryRepository): Response
     {
-        $allWishesByCategory = $wishRepository->findByCategory($categoryId);
+        $allCategories = $categoryRepository->findAll();
 
         return $this->render('category/list.html.twig', [
-            "allWishesByCategory" => $allWishesByCategory
+            "allCategories" => $allCategories
         ]);
     }
 }

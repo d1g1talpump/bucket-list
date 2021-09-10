@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ allWishesByCategory[0].category.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>By Category : {{ allWishesByCategory[0].category.name }}</h1>
+    <div class="wish-list">
+        <ol>
+            {% for wish in allWishesByCategory %}
+                <li>
+                    <a href="{{ path('wish_details', {'id': wish.id }) }}">{{ wish.title }}</a>
+                    <dd>Author : {{ wish.author }}</dd>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}
