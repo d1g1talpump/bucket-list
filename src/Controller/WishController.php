@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\AddWishType;
+use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,14 +43,14 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route ("", name="list")
+     * @Route("/", name="list")
      */
     public function list(WishRepository $wishRepository): Response
     {
         $allWishes = $wishRepository->findAll();
 
         return $this->render('wish/list.html.twig', [
-            'allWishes'=>$allWishes
+            'allWishes'=>$allWishes,
         ]);
     }
 

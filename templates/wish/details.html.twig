@@ -8,7 +8,7 @@
     <div class="wish-details">
         <h2>{{ wish.title }}</h2>
         <p>{{ wish.description }}</p>
-        <small>Authored by {{ wish.author }} </small>
-        <small>On {{ wish.dateCreated|date('D d M y') }}</small>
+        <cite>Authored by {{ wish.author }} </cite>
+        <cite>On {{ wish.dateCreated|date('D d M y') }}</cite>
     </div>
 {% endblock %}

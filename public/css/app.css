@@ -37,6 +37,25 @@ body > .container {
     flex-direction: column;
 }
 
+.wish-details > h2 {
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.wish-details > cite {
+    font-size: 11px;
+}
+
+.wish-list > ol > li {
+    margin-bottom: 10px;
+}
+
+li > dd {
+    margin-left: 20px;
+    font-size: 11px;
+    font-style: italic;
+}
+
 main {
     flex: 1;
 }
