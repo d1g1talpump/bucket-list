@@ -22,7 +22,7 @@ class WishController extends AbstractController
      */
     public function list(WishRepository $wishRepository): Response
     {
-        $allWishes = $wishRepository->findAll();
+        $allWishes = $wishRepository->findAllPublishable();
 
         return $this->render('wish/list.html.twig', [
             'allWishes'=>$allWishes,
@@ -75,7 +75,7 @@ class WishController extends AbstractController
         }
 
         return $this->render("wish/add.html.twig", [
-            'wishForm' => $wishForm->createView()
+            'wishForm' => $wishForm->createView(),
         ]);
     }
 }

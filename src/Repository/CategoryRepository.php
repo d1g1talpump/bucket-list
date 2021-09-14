@@ -19,15 +19,4 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-//    public function findByCategory(int $categoryID)
-//    {
-//        $entityManager = $this->getEntityManager();
-//        $dql = "select *
-//                from wish
-//                where category_id = $categoryID";
-//        $query = $entityManager->createQuery($dql);
-//
-//        return $query->getResult();
-//    }
-
 }

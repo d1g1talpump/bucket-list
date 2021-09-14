@@ -22,8 +22,18 @@ class WishRepository extends ServiceEntityRepository
     public function findByCategory(int $categoryID)
     {
         $queryBuilder = $this->createQueryBuilder('c');
-        $queryBuilder->andWhere('c.category = '.$categoryID);
+        $queryBuilder->andWhere('c.category = ' . $categoryID);
+        $queryBuilder->andWhere('c.isPublished = 1');
         $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function findAllPublishable()
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->andWhere('p.isPublished = 1');
+        $query =$queryBuilder->getQuery();
 
         return $query->getResult();
     }

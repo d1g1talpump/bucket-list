@@ -5,10 +5,29 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        {{ form_start(wishForm) }}
-        {{ form_widget(wishForm) }}
+
+         {{ form_start(wishForm) }}
+         <div>
+             {{ form_label(wishForm.title) }}
+             {{ form_widget(wishForm.title) }}
+         </div>
+         <div>
+             {{ form_label(wishForm.description) }}
+             {{ form_widget(wishForm.description) }}
+         </div>
+         <div>
+             {{ form_label(wishForm.author)}}
+             {{ form_widget(wishForm.author, {'attr': {'value': app.user.pseudo}}) }}
+         </div>
+         <div>
+             {{ form_label(wishForm.category) }}
+             {{ form_widget(wishForm.category) }}
+         </div>
+         <div>
+             {{ form_label(wishForm.isPublished) }}
+             {{ form_widget(wishForm.isPublished) }}
+         </div>
         <button>Create!</button>
         {{ form_end(wishForm) }}
-    </div>
+
 {% endblock %}

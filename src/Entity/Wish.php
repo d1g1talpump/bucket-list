@@ -32,7 +32,7 @@ class Wish
 
     /**
      * @Assert\Length (min="3", max="50", maxMessage="This should be less that 50 character", minMessage="This should be longer that 3 characters")
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50,)
      */
     private $author;
 

@@ -83,7 +83,7 @@ select {
     max-width: 50%;
 }
 
-#add_wish > div {
+form > div {
     margin-bottom: 15px;
     margin-top: 15px;
 }
