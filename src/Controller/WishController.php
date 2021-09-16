@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Services\Censorship;
 use App\Entity\Wish;
 use App\Form\AddWishType;
-use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,16 +57,26 @@ class WishController extends AbstractController
     /**
      * @Route("/add", name="add")
      */
-    public function addWish(Request $request, EntityManagerInterface $entityManager): Response
+    public function addWish(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        Censorship $censorship
+    ): Response
     {
         $wish = new Wish();
-        $wish->setDateCreated(new \DateTime());
 
         $wishForm = $this->createForm(AddWishType::class, $wish);
 
         $wishForm->handleRequest($request);
 
         if ($wishForm->isSubmitted() && $wishForm->isValid()) {
+            $wish->setDateCreated(new \DateTime());
+
+            $purifyString = $censorship->purify($wish->getTitle());
+            $wish->setTitle($purifyString);
+            $purifyString = $censorship->purify($wish->getDescription());
+            $wish->setDescription($purifyString);
+
             $entityManager->persist($wish);
             $entityManager->flush();
 

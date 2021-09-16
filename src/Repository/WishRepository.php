@@ -33,6 +33,7 @@ class WishRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('p');
         $queryBuilder->andWhere('p.isPublished = 1');
+        $queryBuilder->addOrderBy('p.id', 'DESC');
         $query =$queryBuilder->getQuery();
 
         return $query->getResult();
