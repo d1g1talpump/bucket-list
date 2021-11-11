@@ -4,7 +4,7 @@ namespace App\Services;
 
 class Censorship
 {
-    const BADWORDS = ['fuck', 'shit', 'piss', 'cunt', 'ass'];
+    const BADWORDS = ['fuck', 'shit', 'piss', 'cunt', 'ass', 'wank'];
 
     public function purify($string) :string
     {
